@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 class HttpService {
   getUrls = () => {
     var promise = new Promise((resolve, reject) => {
-      fetch('http://localhost:3004')
+      fetch('http://localhost:3004/')
         .then(res => {
         resolve(res.json());
       })
