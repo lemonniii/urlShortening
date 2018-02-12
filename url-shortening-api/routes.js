@@ -25,7 +25,7 @@ router.use(function timeLog (req, res, next) {
   next();
 });
 
-/******************** Global Functions *********************/
+/******************** lookup URL *********************/
 
 var uuidGen = () => {
   return uuidv4().substring(0,6);
@@ -49,8 +49,6 @@ function isEmptyObject(obj) {
   return true;
 }
 
-/******************** lookup URL *********************/
-
 router.get('/long/*', function(req, res) {
   Url.findOne({'longUrl': req.params[0]}).exec(function(err, url) {
     if (err) {
@@ -72,6 +70,40 @@ router.get('/long/*', function(req, res) {
       }
     }
   });
+});
+
+/***************** Url Shortening ********************/
+
+// var count = 1;
+// var domain = "http://localhost:3004/short/"
+//
+// var shorten = (longUrl) => {
+//   var short = domain + count;
+//   count++;
+//   return short;
+// }
+
+router.get('/', function(req, res) {
+  Url.find({}).populate({path:'visitors', model: 'Visitor'}).exec(function(err, url){
+    if (err) {
+      res.status(500).send({error: "Could not fetch url list"});
+    } else {
+      res.status(200).send(url);
+    }
+  });
+});
+
+router.post('/', function(req, res) {
+  var url = new Url();
+  url.longUrl = req.body.url;
+  url.shortUrl = shorten(url.longUrl);
+  url.save(function(err, savedUrl) {
+    if (err) {
+      res.status(500).send({error: "Could not save product"});
+    } else {
+      res.send(savedUrl);
+    }
+  })
 });
 
 /*********************** Visitors ********************/
