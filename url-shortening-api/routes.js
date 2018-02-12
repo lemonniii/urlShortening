@@ -25,14 +25,14 @@ router.use(function timeLog (req, res, next) {
   next();
 });
 
-/******************** lookup URL *********************/
+/******************** Global Functions *********************/
 
 var uuidGen = () => {
   return uuidv4().substring(0,6);
 }
 
 var count = uuidGen();
-var domain = "http://localhost:3004/short/"
+var domain = "http://localhost:3004/short/";
 
 var shorten = (longUrl) => {
   var short = domain + count;
@@ -48,6 +48,8 @@ function isEmptyObject(obj) {
   }
   return true;
 }
+
+/******************** lookup URL **************************/
 
 router.get('/long/*', function(req, res) {
   Url.findOne({'longUrl': req.params[0]}).exec(function(err, url) {
@@ -72,46 +74,13 @@ router.get('/long/*', function(req, res) {
   });
 });
 
-/***************** Url Shortening ********************/
-
-// var count = 1;
-// var domain = "http://localhost:3004/short/"
-//
-// var shorten = (longUrl) => {
-//   var short = domain + count;
-//   count++;
-//   return short;
-// }
-
-router.get('/', function(req, res) {
-  Url.find({}).populate({path:'visitors', model: 'Visitor'}).exec(function(err, url){
-    if (err) {
-      res.status(500).send({error: "Could not fetch url list"});
-    } else {
-      res.status(200).send(url);
-    }
-  });
-});
-
-router.post('/', function(req, res) {
-  var url = new Url();
-  url.longUrl = req.body.url;
-  url.shortUrl = shorten(url.longUrl);
-  url.save(function(err, savedUrl) {
-    if (err) {
-      res.status(500).send({error: "Could not save product"});
-    } else {
-      res.send(savedUrl);
-    }
-  })
-});
-
-/*********************** Visitors ********************/
+/*********************** Visitors *************************/
 
 router.get('/short/:id', function(req, res) {
   var shortUrl = domain + req.params.id;
 
-  Url.findOne({'shortUrl': shortUrl}).populate({path:'visitors', model: 'Visitor'}).exec(function(err, urlVisit) {
+  Url.findOne({'shortUrl': shortUrl}).populate({path:'visitors', model: 'Visitor'})
+  .exec(function(err, urlVisit) {
     if (err) {
       res.status(500).send({error: "Could not find URL"});
     } else {
@@ -123,7 +92,8 @@ router.get('/short/:id', function(req, res) {
 
 router.post('/short/:id', function(req, res) {
   var visitor = new Visitor();
-  visitor.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddressb.split(",")[0];
+  visitor.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+  || req.socket.remoteAddress || req.connection.socket.remoteAddressb.split(",")[0];
   visitor.timestamp = new Date().toISOString();
   visitor.deviceType = req.device.type;
   var shortUrl = domain + req.params.id;
@@ -132,7 +102,8 @@ router.post('/short/:id', function(req, res) {
     if (err) {
       res.status(500).send({error: "Could not find URL"});
     } else {
-      Url.update({'shortUrl': shortUrl}, {$inc: {numVisits: 1}, $addToSet: {visitors: visitor._id}}, function(err, url) {
+      Url.update({'shortUrl': shortUrl}, {$inc: {numVisits: 1}, $addToSet: {visitors: visitor._id}},
+      function(err, url) {
         if (err) {
           res.status(500).send({error: "Could not add visitor"});
         } else {
@@ -149,8 +120,6 @@ router.post('/short/:id', function(req, res) {
   });
 
 });
-
-/**************** Increase */
 
 /*********************** Exports *********************/
 

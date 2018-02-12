@@ -106,7 +106,6 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">URL Shortener</h1>
         </header>
-
         <div className="container url">
           <div>
             <textarea name="Long Url" value={this.state.new} className="longUrl" placeholder="Please enter URL to be shortened here..." onChange={(e) => this.handleChange(e.target.value)} />

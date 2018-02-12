@@ -1,10 +1,7 @@
+/***************** General Styling ****************/
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .App-header {
@@ -16,11 +13,11 @@
 
 .App-footer {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
   margin-top: 80px;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
@@ -35,9 +32,9 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.url {
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
 @mixin vertical-align($position: relative) {
@@ -48,9 +45,7 @@
   transform: translateY(-50%);
 }
 
-.url {
-  margin-top: 50px;
-}
+/******************* Input Area **********************/
 
 .url textarea{
   resize: none;
@@ -78,6 +73,8 @@ div.button_container button {
   margin: 5px;
 }
 
+/******************** Visitor Stats *******************/
+
 div.infoBox {
   text-align: left;
   display: block;
@@ -85,7 +82,7 @@ div.infoBox {
   margin-top: 40px;
   line-height: 1em;
   width: 75%;
-
+  margin-bottom: 200px;
 }
 
 div.infoBox table {
