@@ -1,0 +1,18 @@
+{
+  "name": "url-shortening-api",
+  "version": "1.0.0",
+  "description": "Url Shortening API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alice Huang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-device": "^0.4.2",
+    "mongoose": "^5.0.4",
+    "uuid": "^3.2.1"
+  }
+}

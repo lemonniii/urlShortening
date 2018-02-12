@@ -1,0 +1,120 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-footer {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  margin-top: 80px;
+}
+
+.App-title {
+  margin-top: 60px;
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.url {
+  margin-top: 50px;
+}
+
+.url textarea{
+  resize: none;
+  text-align: left;
+  margin: 3%;
+  height: 200px;
+  width: 75%;
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.url textarea#shortUrl{
+  height: 100px;
+}
+
+div.button_container button {
+  background-color:darkslategray;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  height: 30px;
+  width: 70px;
+  border-radius: 7px;
+  margin: 5px;
+}
+
+div.infoBox {
+  text-align: left;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+  line-height: 1em;
+  width: 75%;
+
+}
+
+div.infoBox table {
+  margin: auto;
+  margin-top:75px;
+  table-layout: fixed;
+}
+
+div.infoBox table th, td {
+  overflow: hidden;
+}
+
+div.infoBox table td {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+div.infoBox table caption.topCaption {
+  caption-side: top;
+}
+
+div.infoBox div.hide {
+  visibility: none;
+  max-height: 0;
+  overflow: hidden;
+}
+
+div.infoBox div.show {
+  visibility: visible;
+  height: auto;
+  overflow: scroll;
+}
+
+div.infoBox table.continuous {
+  margin-top: 0;
+}
