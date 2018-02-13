@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Visitor from '../visitors/visitor';
-
 import HttpService from '../services/http-services';
 
 const http = new HttpService();
@@ -14,7 +13,7 @@ class App extends Component {
     http.getUrls();
 
     this.state = {
-      word: 'apple',
+      word: '',
       shortUrl: '',
       longUrl: '',
       visitors: [],
@@ -25,7 +24,11 @@ class App extends Component {
     this.getShort = this.getShort.bind(this);
     this.visitorList = this.visitorList.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
+    this.addVisitor = this.addVisitor.bind(this);
+    this.toggleOff = this.toggleOff.bind(this);
+    this.toggleOn = this.toggleOn.bind(this);
+    this.urlGetInfo = this.urlGetInfo.bind(this);
+    this.redirect = this.redirect.bind(this);
 
   }
 
@@ -54,7 +57,7 @@ class App extends Component {
         longUrl: data.longUrl,
       })
     }, err => {
-
+      // error handling logic
     });
   }
 
@@ -63,7 +66,7 @@ class App extends Component {
     http.addVisitor(shortUrl).then(data => {
 
     }, err => {
-
+      // error handling logic
     });
   }
 
@@ -87,7 +90,7 @@ class App extends Component {
       })
       self.toggleOn();
     }, err => {
-
+      // error handling logic
     });
   }
 
@@ -96,7 +99,7 @@ class App extends Component {
     http.addVisitor(this.state.shortUrl).then(data => {
 
     }, err => {
-
+      // error handling logic
     });
   };
 

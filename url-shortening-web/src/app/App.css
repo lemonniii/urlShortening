@@ -1,10 +1,7 @@
+/********************* App Default *********************/
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .App-header {
@@ -13,15 +10,6 @@
   padding: 20px;
   color: white;
 }
-
-.App-footer {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-  margin-top: 80px;
-}
-
 .App-title {
   margin-top: 60px;
   font-size: 1.5em;
@@ -31,18 +19,7 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@mixin vertical-align($position: relative) {
-  position: $position;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+/*********************** Custom CSS  *************************/
 
 .url {
   margin-top: 50px;
@@ -114,8 +91,4 @@ div.infoBox div.show {
   visibility: visible;
   height: auto;
   overflow: scroll;
-}
-
-div.infoBox table.continuous {
-  margin-top: 0;
 }

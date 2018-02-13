@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-//import DataService from '../services/data-service';
-//import NotificationService, {NOTIF_WISHLIST_CHANGED} from '../services/notification-service';
+import './visitors.css';
 
 class Visitor extends Component {
   render() {
